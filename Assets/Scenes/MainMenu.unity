@@ -1193,6 +1193,9 @@ MonoBehaviour:
   audioSource: {fileID: 226085682}
   clickSound: {fileID: 8300000, guid: 562f1793e2f78a84c921b226db0542ef, type: 3}
   coinPickupSound: {fileID: 8300000, guid: 250af5f90c013374ea4e193a304a71a6, type: 3}
+  jumpSound: {fileID: 8300000, guid: d5b28dd11a36e0b47b41282b603f6279, type: 3}
+  laneSwitchSound: {fileID: 8300000, guid: d5b28dd11a36e0b47b41282b603f6279, type: 3}
+  slideSound: {fileID: 0}
 --- !u!114 &226085685
 MonoBehaviour:
   m_ObjectHideFlags: 0

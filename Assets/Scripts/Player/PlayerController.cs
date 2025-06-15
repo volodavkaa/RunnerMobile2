@@ -61,8 +61,16 @@ private float nextSpeedMilestone = 50f;
        
       
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded) Jump();
-        if (Input.GetKeyDown(KeyCode.LeftArrow)  && currentLane > 0) currentLane--;
-        if (Input.GetKeyDown(KeyCode.RightArrow) && currentLane < 2) currentLane++;
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && currentLane > 0)
+{
+    currentLane--;
+    SoundManager.Instance?.PlayLaneSwitchSound();
+}
+if (Input.GetKeyDown(KeyCode.RightArrow) && currentLane < 2)
+{
+    currentLane++;
+    SoundManager.Instance?.PlayLaneSwitchSound();
+}
         if (Input.GetKeyDown(KeyCode.DownArrow)) SlideManager.Instance.TrySlide();
 
 
@@ -171,6 +179,7 @@ private float nextSpeedMilestone = 50f;
     {
         if (!isGrounded || isSliding) return;
         if (!JumpEnergyManager.Instance.UseEnergy()) return;   
+SoundManager.Instance?.PlayJumpSound();
 
         
         Vector3 v = rb.velocity; v.y = 0f; rb.velocity = v;
