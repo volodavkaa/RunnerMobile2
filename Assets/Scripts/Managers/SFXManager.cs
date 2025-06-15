@@ -1,21 +1,27 @@
 using UnityEngine;
 
-public class SFXManager : MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
-    public static SFXManager Instance;
+    public static SoundManager Instance;
     public AudioSource audioSource;
-    public AudioClip buttonClick;
+    public AudioClip clickSound;
 
     void Awake()
+{
+    if (Instance == null)
     {
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
-
-    public void PlayClick()
-{
-    Debug.Log("Click Sound Played");
-    if (buttonClick != null && audioSource != null)
-        audioSource.PlayOneShot(buttonClick);
+    else
+    {
+        Destroy(gameObject); 
+    }
 }
 
+    public void PlayClickSound()
+    {
+        if (clickSound != null)
+            audioSource.PlayOneShot(clickSound);
+    }
 }

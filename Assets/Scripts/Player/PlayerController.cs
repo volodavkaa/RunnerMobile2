@@ -59,14 +59,14 @@ private float nextSpeedMilestone = 50f;
         if (!GameManager.Instance.IsGameStarted()) return;
 
        
-    #if UNITY_EDITOR    
+      
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded) Jump();
         if (Input.GetKeyDown(KeyCode.LeftArrow)  && currentLane > 0) currentLane--;
         if (Input.GetKeyDown(KeyCode.RightArrow) && currentLane < 2) currentLane++;
         if (Input.GetKeyDown(KeyCode.DownArrow)) SlideManager.Instance.TrySlide();
 
 
-    #else               
+                
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
@@ -97,7 +97,7 @@ private float nextSpeedMilestone = 50f;
                 }
             }
         }
-#endif
+
         
         float targetX    = (currentLane - 1) * laneDistance;
         targetPosition   = new Vector3(targetX, transform.position.y, transform.position.z);
