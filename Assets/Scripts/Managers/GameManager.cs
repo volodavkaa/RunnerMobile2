@@ -82,23 +82,19 @@ MissionManager.Instance?.RegisterLoseHeart();
     hudCanvas?.SetActive(false);
     gameOverPanel?.SetActive(true);
 
-    // 🎯 Обчислення нагороди
     int coinReward = Mathf.FloorToInt(distanceTraveled / 5);
     ProfileManager.Instance.AddCoins(coinReward);
 
-    // 🏅 Рекорд та повідомлення
     float previousBest = ProfileManager.Instance.Current.bestDistance;
     if (distanceTraveled > previousBest)
     {
         ProfileManager.Instance.Current.bestDistance = distanceTraveled;
         MessagePanel.Instance.ShowMessage($"🏅 New Record: {Mathf.FloorToInt(distanceTraveled)} m!");
-        ProfileManager.Instance.AddCoins(20); // бонус
+        ProfileManager.Instance.AddCoins(20); 
     }
 
-    // 💾 Збереження
+    
     ProfileManager.Instance.SaveAllProfiles();
-
-    // 📊 Оновлення UI
     if (distanceText) distanceText.text = $"Distance: {Mathf.FloorToInt(distanceTraveled)} m";
     if (rewardText)   rewardText.text   = $"+{coinReward} coins";
     if (recordText)   recordText.text   = $"Record: {Mathf.FloorToInt(ProfileManager.Instance.Current.bestDistance)} m";
@@ -109,17 +105,11 @@ void Update()
     {
         Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         distanceTraveled = playerPos.z - startPos.z;
-
-        // ⬇️ Перевірка рекорду під час забігу
         if (!newRecordAnnounced &&
             distanceTraveled > ProfileManager.Instance.Current.bestDistance)
         {
             newRecordAnnounced = true;
-
-            // 💬 Повідомлення
             MessagePanel.Instance.ShowMessage("🏅 New distance record!");
-
-            // 💰 Нагорода (разово)
             ProfileManager.Instance.AddCoins(20);
         }
     }

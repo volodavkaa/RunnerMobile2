@@ -8,6 +8,7 @@ public class Coin : MonoBehaviour
 
     if (other.CompareTag("Player"))
     {
+        SoundManager.Instance?.PlayCoinSound();
         UIManager.Instance.AddCoin(1);
         MissionManager.Instance?.RegisterCoin(1, true); 
         CoinPool.Instance.Return(gameObject);
